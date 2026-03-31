@@ -1,0 +1,14 @@
+# Voice-to-voice agent (OpenAI Agents SDK + microphone I/O)
+# Install: python -m pip install -r requirements.txt
+#
+# The script imports `agents.voice`. That module exists only when you install
+# the `voice` extra (brackets required). If you only install `openai-agents`,
+# you will get ModuleNotFoundError: No module named 'agents.voice'.
+# Fix: python -m pip install -U "openai-agents[voice]"
+
+openai-agents[voice]>=0.4.0
+sounddevice>=0.4.6
+numpy==1.26.4
+faiss-cpu==1.8.0.post1
+evoagentx==0.1.0
+python-dotenv>=1.0.1
