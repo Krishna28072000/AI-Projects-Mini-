@@ -1,0 +1,5 @@
+openai-agents
+mcp[cli]
+python-dotenv
+mcp 
+httpx
