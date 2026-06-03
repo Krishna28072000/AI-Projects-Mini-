@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Resume Shortlisting Tool</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>🎯 AI Resume Shortlisting Tool</h1>
+      <p class="tagline">Upload resumes → Define job → Get ranked candidates</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ===== Step 1: Upload Resumes ===== -->
+    <section class="card" id="step-upload">
+      <div class="step-header">
+        <span class="step-num">1</span>
+        <h2>Upload Resumes</h2>
+      </div>
+      <p class="muted">Supported formats: PDF, DOC, DOCX, TXT. You can drag-drop a whole folder.</p>
+
+      <div id="drop-zone" class="drop-zone">
+        <input type="file" id="file-input" multiple accept=".pdf,.doc,.docx,.txt" webkitdirectory="" directory="" hidden>
+        <input type="file" id="file-input-files" multiple accept=".pdf,.doc,.docx,.txt" hidden>
+        <p>📁 Drag &amp; drop resumes here</p>
+        <p class="muted">or</p>
+        <div class="button-row">
+          <button class="btn-secondary" onclick="document.getElementById('file-input').click()">Choose Folder</button>
+          <button class="btn-secondary" onclick="document.getElementById('file-input-files').click()">Choose Files</button>
+        </div>
+      </div>
+
+      <div id="upload-status" class="status hidden"></div>
+      <div id="upload-results" class="hidden"></div>
+
+      <div class="actions">
+        <button class="btn-secondary" onclick="loadCandidates()">Refresh List</button>
+        <button class="btn-secondary" onclick="exportCandidatesExcel()">Download All as Excel</button>
+        <button class="btn-danger" onclick="clearCandidates()">Clear All</button>
+      </div>
+
+      <div id="candidate-list"></div>
+    </section>
+
+    <!-- ===== Step 2: Define Job ===== -->
+    <section class="card" id="step-job">
+      <div class="step-header">
+        <span class="step-num">2</span>
+        <h2>Define Job Requirements</h2>
+      </div>
+      <p class="muted">Either paste a full job description OR enter the skills to match. Other fields are optional but improve ranking accuracy.</p>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="jd">📄 Paste JD</button>
+        <button class="tab-btn" data-tab="skills">🏷️ Enter Skills</button>
+      </div>
+
+      <form id="job-form">
+        <div class="form-row">
+          <label>Job Title</label>
+          <input type="text" name="title" placeholder="e.g. Senior Backend Engineer">
+        </div>
+
+        <div class="form-row tab-content" data-tab="jd">
+          <label>Job Description</label>
+          <textarea name="description" rows="8" placeholder="Paste the full job description here. Skills will be auto-extracted by AI."></textarea>
+        </div>
+
+        <div class="form-row tab-content hidden" data-tab="skills">
+          <label>Required Skills (comma-separated)</label>
+          <input type="text" name="skills_input" placeholder="e.g. Python, FastAPI, PostgreSQL, AWS">
+        </div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label>Min. Experience (years)</label>
+            <input type="number" name="min_experience_years" step="0.5" min="0" placeholder="e.g. 3">
+          </div>
+          <div class="form-row">
+            <label>Domain</label>
+            <input type="text" name="domain" placeholder="e.g. Fintech, Healthcare">
+          </div>
+          <div class="form-row">
+            <label>Preferred Location</label>
+            <input type="text" name="preferred_location" placeholder="e.g. Bangalore, Remote">
+          </div>
+          <div class="form-row">
+            <label>Preferred Education</label>
+            <input type="text" name="preferred_education" placeholder="e.g. B.Tech Computer Science">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Save Job &amp; Match Candidates</button>
+      </form>
+
+      <div id="job-status" class="status hidden"></div>
+    </section>
+
+    <!-- ===== Step 3: Ranked Results ===== -->
+    <section class="card hidden" id="step-results">
+      <div class="step-header">
+        <span class="step-num">3</span>
+        <h2>Ranked Candidates</h2>
+      </div>
+      <div id="results-meta" class="muted"></div>
+      <div class="actions">
+        <button class="btn-primary" id="export-ranked-btn">📊 Download Ranked Excel</button>
+      </div>
+      <div id="results-list"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="muted">Built with FastAPI + OpenAI</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

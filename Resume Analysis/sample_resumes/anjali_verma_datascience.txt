@@ -1,0 +1,36 @@
+ANJALI VERMA
+Data Scientist
+anjali.verma@gmail.com | +91 99887 76655 | Pune, India
+
+PROFILE
+Data scientist with 4 years of experience in machine learning and predictive analytics
+in the fintech and e-commerce domains.
+
+EXPERIENCE
+
+Data Scientist | FinanceBot | Aug 2020 - Present
+- Built fraud detection models using XGBoost and Random Forest (95% precision)
+- Deployed ML pipelines using Python, scikit-learn, and MLflow
+- Designed A/B testing frameworks for credit risk scoring models
+- Worked extensively with Pandas, NumPy, and PostgreSQL
+
+ML Intern | Bharti Analytics | Jan 2020 - Jul 2020
+- Built customer segmentation models with K-means clustering
+- Created Tableau dashboards for business stakeholders
+
+SKILLS
+- ML/AI: scikit-learn, XGBoost, TensorFlow, PyTorch, MLflow
+- Languages: Python, R, SQL
+- Data: Pandas, NumPy, Apache Spark
+- Visualization: Tableau, Power BI, Matplotlib, Seaborn
+- Cloud: AWS SageMaker, GCP
+
+EDUCATION
+M.Tech in Data Science | IIT Bombay | 2018 - 2020
+B.Sc. Statistics | Fergusson College, Pune | 2015 - 2018
+
+CERTIFICATIONS
+- TensorFlow Developer Certificate (2022)
+- AWS Machine Learning Specialty (2023)
+
+NOTICE PERIOD: Immediate joiner

@@ -1,0 +1,36 @@
+PRIYA SHARMA
+Senior Backend Engineer
+priya.sharma@example.com | +91 98765 43210 | Bangalore, India
+
+PROFESSIONAL SUMMARY
+Backend engineer with 6 years of experience building scalable Python services.
+Strong in FastAPI, Django, PostgreSQL, and AWS cloud infrastructure.
+
+WORK EXPERIENCE
+
+Senior Backend Engineer | TechCorp Solutions | Jan 2022 - Present
+- Architected microservices using FastAPI and PostgreSQL serving 2M+ daily requests
+- Migrated legacy Django monolith to event-driven architecture, reducing latency by 60%
+- Led a team of 4 engineers across 3 product features
+- Deployed services on AWS using ECS, Lambda, and CloudFormation
+
+Backend Engineer | DataFlow Inc | Jun 2019 - Dec 2021
+- Built REST APIs with Django REST Framework for analytics platform
+- Implemented Redis caching layer, cutting database load by 40%
+- Wrote unit and integration tests achieving 85% coverage
+
+SKILLS
+Languages: Python, SQL, JavaScript
+Frameworks: FastAPI, Django, Flask, Django REST Framework
+Databases: PostgreSQL, MongoDB, Redis
+Cloud: AWS (EC2, S3, Lambda, RDS, ECS), Docker, Kubernetes
+Tools: Git, Jenkins, Terraform, Postman
+
+EDUCATION
+B.Tech in Computer Science | NIT Trichy | 2015 - 2019
+
+CERTIFICATIONS
+- AWS Certified Solutions Architect - Associate (2023)
+- Certified Kubernetes Administrator (CKA) - 2022
+
+NOTICE PERIOD: 60 days
