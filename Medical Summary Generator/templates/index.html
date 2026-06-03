@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Report Analysis Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 900px;
+            margin-top: 50px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .result-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            background: #e9ecef;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Medical Report Analysis</h2>
+        <form id="upload-form" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="file" class="form-label">Upload Medical Report (PDF, PPT, XLSX, DOCX, TXT, CSV)</label>
+                <input type="file" class="form-control" id="file" name="pdf_file" accept=".pdf,.ppt,.pptx,.xlsx,.xls,.docx,.txt,.csv" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Analyze Report</button>
+        </form>
+        <div id="result" class="result-box d-none">
+            <h5>Analysis Result:</h5>
+            <pre id="output"></pre>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#upload-form').on('submit', function (e) {
+                e.preventDefault();
+                let formData = new FormData(this);
+                $('#output').text('Processing...');
+                $('#result').removeClass('d-none');
+                
+                $.ajax({
+                    url: '/analyze_pdf',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        $('#output').text(response.result);
+                    },
+                    error: function (xhr) {
+                        $('#output').text('Error: ' + xhr.responseJSON.error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
