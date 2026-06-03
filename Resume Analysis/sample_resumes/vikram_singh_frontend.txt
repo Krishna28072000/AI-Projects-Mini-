@@ -1,0 +1,25 @@
+VIKRAM SINGH
+Junior Frontend Developer
+vikram.singh@yahoo.com | +91 87654 32109 | Delhi, India
+
+SUMMARY
+1.5 years of experience as a frontend developer building responsive web interfaces.
+
+EXPERIENCE
+
+Frontend Developer | Creative Agency | Nov 2023 - Present
+- Building landing pages with React and Next.js
+- Implementing pixel-perfect designs from Figma
+- Working with Tailwind CSS and Material UI
+
+Intern | DesignStudio | May 2023 - Oct 2023
+- Created static HTML/CSS websites
+- Learned JavaScript and React fundamentals
+
+SKILLS
+React, Next.js, JavaScript, HTML5, CSS3, Tailwind CSS, Material UI, Figma, Git
+
+EDUCATION
+B.Sc. Computer Applications | Delhi University | 2020 - 2023
+
+NOTICE PERIOD: 15 days

@@ -1,0 +1,33 @@
+RAHUL MEHTA
+Full-Stack Developer
+rahul.mehta@email.com | +91 91234 56789 | Hyderabad, India
+
+ABOUT
+3 years of experience developing web applications with React and Node.js.
+Passionate about clean code and user experience.
+
+EXPERIENCE
+
+Full-Stack Developer | StartupXYZ | Mar 2022 - Present
+- Developed customer-facing dashboard using React.js, TypeScript, and Tailwind CSS
+- Built REST APIs with Node.js and Express, integrated with MongoDB
+- Set up CI/CD pipelines using GitHub Actions
+- Collaborated with designers on responsive UI components
+
+Junior Developer | WebSolutions Pvt Ltd | Jul 2021 - Feb 2022
+- Maintained legacy PHP applications
+- Migrated frontend modules from jQuery to React
+
+TECHNICAL SKILLS
+- Frontend: React.js, TypeScript, JavaScript, HTML, CSS, Tailwind, Redux
+- Backend: Node.js, Express, REST APIs
+- Database: MongoDB, MySQL
+- Tools: Git, Docker, GitHub Actions, VS Code
+
+EDUCATION
+B.E. Computer Engineering, VJTI Mumbai, 2017-2021
+
+NOTICE PERIOD
+30 days
+
+Available for relocation.
