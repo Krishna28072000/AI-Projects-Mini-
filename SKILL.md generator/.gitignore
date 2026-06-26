@@ -1,0 +1,76 @@
+# Python virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python build files
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# OpenAI / API keys
+*.key
+secrets.json
+credentials.json
+
+# IDE / editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Generated skill ZIP files
+*.zip
+
+# Generated skill output folders
+generated/
+outputs/
+downloads/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Jupyter files
+.ipynb_checkpoints/
+
+# Node files if frontend is upgraded later
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage / test cache
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Uvicorn reload/cache
+*.pid
+
+# Database files if added later
+*.sqlite3
+*.db
