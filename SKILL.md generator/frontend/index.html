@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Multi-Platform Skill Generator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="page">
+
+    <div class="app-card">
+        <span class="crop crop-tl"></span>
+        <span class="crop crop-tr"></span>
+        <span class="crop crop-bl"></span>
+        <span class="crop crop-br"></span>
+
+        <div class="card-head">
+            <div class="head-copy">
+                <p class="eyebrow">Skill package spec</p>
+                <h1>Multi-Platform Skill Generator</h1>
+                <p class="subtitle">
+                    Describe the skill you want to create. Select a platform and generate a complete skill package.
+                </p>
+            </div>
+
+            <div class="stamp" id="stamp">
+                <div class="stamp-row">
+                    <span>Spec</span>
+                    <span id="stampSpec">No. 001</span>
+                </div>
+                <div class="stamp-row">
+                    <span>Platform</span>
+                    <span id="stampPlatform">OPENAI</span>
+                </div>
+                <div class="stamp-row">
+                    <span>Status</span>
+                    <span id="stampStatus" class="status-draft">DRAFT</span>
+                </div>
+            </div>
+        </div>
+
+        <hr class="rule">
+
+        <label for="platform">Target platform</label>
+        <select id="platform">
+            <option value="openai">OpenAI Skill</option>
+            <option value="claude">Claude Skill</option>
+            <option value="generic">Generic AI Agent Skill</option>
+        </select>
+
+        <label for="requirement" class="field-label">Skill requirement</label>
+        <textarea
+            id="requirement"
+            placeholder="Example: Create a skill that generates Plotly charts from CSV files and returns HTML output."
+        ></textarea>
+
+        <button id="generateBtn" onclick="generateSkillMd()">Generate Skill Package</button>
+
+        <div id="validationBox" class="validation-box hidden"></div>
+
+        <div id="packagePreview" class="package-preview hidden">
+            <h2>Skill Package Preview</h2>
+            <pre id="packageTree"></pre>
+        </div>
+
+        <hr class="rule">
+
+        <div class="output-header">
+            <h2>Generated Markdown</h2>
+
+            <div class="output-actions">
+                <button class="copy-btn" onclick="copyOutput()">Copy</button>
+                <button class="download-btn" onclick="downloadSkillMd()">Download SKILL.md</button>
+                <button class="zip-btn" onclick="downloadSkillZip()">Download Skill ZIP</button>
+            </div>
+        </div>
+
+        <pre id="output">Your generated skill markdown will appear here...</pre>
+    </div>
+
+</div>
+
+<script src="/static/script.js"></script>
+<script>
+    /* ---------------------------------------------------------------
+       Purely cosmetic: keeps the title-block stamp (platform/status)
+       in sync with the existing app state. Does not touch the
+       original generation, validation or download logic in script.js.
+       --------------------------------------------------------------- */
+    (function () {
+        var platformSelect = document.getElementById("platform");
+        var generateBtn = document.getElementById("generateBtn");
+        var validationBox = document.getElementById("validationBox");
+        var stampPlatform = document.getElementById("stampPlatform");
+        var stampStatus = document.getElementById("stampStatus");
+        var stampSpec = document.getElementById("stampSpec");
+
+        var seq = 1;
+
+        function setStatus(text, cls) {
+            stampStatus.textContent = text;
+            stampStatus.className = cls;
+        }
+
+        function syncPlatform() {
+            if (platformSelect && stampPlatform) {
+                stampPlatform.textContent = platformSelect.value.toUpperCase();
+            }
+        }
+
+        if (platformSelect) {
+            platformSelect.addEventListener("change", syncPlatform);
+            syncPlatform();
+        }
+
+        if (generateBtn) {
+            generateBtn.addEventListener("click", function () {
+                setStatus("GENERATING", "status-busy");
+            });
+        }
+
+        if (validationBox) {
+            var observer = new MutationObserver(function () {
+                if (validationBox.classList.contains("hidden")) {
+                    return;
+                }
+                if (validationBox.classList.contains("validation-success")) {
+                    seq += 1;
+                    stampSpec.textContent = "No. " + String(seq).padStart(3, "0");
+                    setStatus("READY", "status-ready");
+                } else if (validationBox.classList.contains("validation-error")) {
+                    setStatus("ERROR", "status-error");
+                }
+            });
+
+            observer.observe(validationBox, { attributes: true, attributeFilter: ["class"] });
+        }
+    })();
+</script>
+</body>
+</html>

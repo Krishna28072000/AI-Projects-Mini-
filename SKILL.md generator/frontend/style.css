@@ -1,0 +1,505 @@
+/* ===========================================================
+   Multi-Platform Skill Generator — "Spec Sheet" theme
+   A drafting-table aesthetic: the app is a tool that turns a
+   loose requirement into a precise, structured spec package,
+   so the UI borrows from blueprints, title blocks and printouts.
+   =========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --paper: #EDF1F6;
+    --paper-line: #C9D3E2;
+    --surface: #FFFFFF;
+    --ink: #14233B;
+    --ink-soft: #51617A;
+    --ink-faint: #8593A8;
+    --line: #D7DEE8;
+    --line-strong: #AEBBD0;
+
+    --accent: #FF6A3D;
+    --accent-ink: #7A2E12;
+    --accent-soft: #FFE4D8;
+
+    --success: #1F7A5C;
+    --success-bg: #E7F6EE;
+    --success-line: #9FD8BE;
+
+    --danger: #C03B2B;
+    --danger-bg: #FDEDE9;
+    --danger-line: #F0B3A8;
+
+    --console: #101826;
+    --console-line: #243349;
+    --console-text: #DCE6F0;
+    --console-amber: #FFB37A;
+    --console-green: #7FE0B0;
+
+    --display-font: "Space Grotesk", "Inter", sans-serif;
+    --body-font: "Inter", -apple-system, sans-serif;
+    --mono-font: "JetBrains Mono", "SFMono-Regular", monospace;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--body-font);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+        linear-gradient(var(--paper-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-position: -1px -1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+    }
+}
+
+.page {
+    min-height: 100vh;
+    padding: 56px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* ---------- Card shell + registration / crop marks ---------- */
+
+.app-card {
+    position: relative;
+    max-width: 1000px;
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    padding: 44px 48px 48px;
+    box-shadow: 0 30px 60px -20px rgba(20, 35, 59, 0.18);
+}
+
+.crop {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+}
+
+.crop::before,
+.crop::after {
+    content: "";
+    position: absolute;
+    background: var(--ink-faint);
+}
+
+.crop::before { width: 100%; height: 1.5px; }
+.crop::after  { width: 1.5px; height: 100%; }
+
+.crop-tl { top: -9px;  left: -9px; }
+.crop-tr { top: -9px;  right: -9px; }
+.crop-bl { bottom: -9px; left: -9px; }
+.crop-br { bottom: -9px; right: -9px; }
+
+.crop-tl::before, .crop-tl::after { top: 9px; left: 9px; }
+.crop-tr::before, .crop-tr::after { top: 9px; right: 9px; left: auto; }
+.crop-bl::before, .crop-bl::after { bottom: 9px; left: 9px; top: auto; }
+.crop-br::before, .crop-br::after { bottom: 9px; right: 9px; top: auto; left: auto; }
+
+/* ---------- Header: eyebrow + title + title-block stamp ---------- */
+
+.card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+.head-copy {
+    flex: 1 1 360px;
+    min-width: 0;
+}
+
+.eyebrow {
+    font-family: var(--display-font);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+}
+
+h1 {
+    margin: 0;
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+}
+
+.subtitle {
+    margin-top: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    font-size: 15px;
+    max-width: 56ch;
+}
+
+/* The title block: a nod to a drawing's stamp box — what's being
+   spec'd, for which platform, and whether it's ready. */
+.stamp {
+    flex: 0 0 auto;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    font-family: var(--mono-font);
+    font-size: 11px;
+    min-width: 200px;
+    background: var(--ink);
+}
+
+.stamp-row {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.stamp-row:last-child { border-bottom: none; }
+
+.stamp-row span:first-child {
+    padding: 8px 10px;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.08em;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.stamp-row span:last-child {
+    padding: 8px 10px;
+    color: #fff;
+    font-weight: 600;
+    text-align: right;
+    letter-spacing: 0.02em;
+}
+
+#stampStatus.status-draft { color: var(--console-amber); }
+#stampStatus.status-busy  { color: var(--console-amber); }
+#stampStatus.status-ready { color: var(--console-green); }
+#stampStatus.status-error { color: #ff9a8c; }
+
+/* ---------- Divider ---------- */
+
+.rule {
+    border: none;
+    border-top: 1px dashed var(--line-strong);
+    margin: 32px 0;
+}
+
+/* ---------- Form fields ---------- */
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--display-font);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+label.field-label {
+    margin-top: 22px;
+}
+
+select {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--line-strong);
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-family: var(--body-font);
+    color: var(--ink);
+    outline: none;
+    background: var(--surface);
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%),
+                       linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%);
+    background-position: calc(100% - 20px) center, calc(100% - 15px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
+
+select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+textarea {
+    width: 100%;
+    min-height: 150px;
+    resize: vertical;
+    padding: 16px;
+    border: 1.5px solid var(--line-strong);
+    border-radius: var(--radius-md);
+    font-size: 14.5px;
+    outline: none;
+    font-family: var(--mono-font);
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--surface);
+}
+
+textarea::placeholder {
+    color: var(--ink-faint);
+}
+
+textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ---------- Buttons ---------- */
+
+button {
+    font-family: var(--display-font);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: transform 0.06s ease, background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+#generateBtn {
+    margin-top: 22px;
+    padding: 15px 26px;
+    width: 100%;
+    background: var(--ink);
+    color: #fff;
+    position: relative;
+}
+
+#generateBtn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-bottom-left-radius: 4px;
+}
+
+#generateBtn:hover:not(:disabled) {
+    background: #0d1a2e;
+}
+
+#generateBtn:disabled {
+    background: var(--line-strong);
+    color: #fff;
+    cursor: not-allowed;
+}
+
+#generateBtn:disabled::after {
+    background: var(--ink-faint);
+}
+
+/* ---------- Validation box ---------- */
+
+.validation-box {
+    margin-top: 20px;
+    padding: 14px 16px;
+    border-radius: var(--radius-md);
+    font-family: var(--mono-font);
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    border: 1.5px solid var(--line);
+}
+
+.validation-success {
+    background: var(--success-bg);
+    color: var(--success);
+    border-color: var(--success-line);
+}
+
+.validation-error {
+    background: var(--danger-bg);
+    color: var(--danger);
+    border-color: var(--danger-line);
+}
+
+.hidden {
+    display: none;
+}
+
+/* ---------- Package preview (rendered like a wiring/structure diagram) ---------- */
+
+.package-preview {
+    margin-top: 24px;
+    background: var(--surface);
+    border: 1.5px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    padding: 4px;
+}
+
+.package-preview h2 {
+    margin: 0;
+    padding: 14px 18px 10px;
+    font-family: var(--display-font);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+#packageTree {
+    margin: 0;
+    min-height: auto;
+    background: var(--console);
+    color: var(--console-green);
+    border: 1px solid var(--console-line);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+}
+
+/* ---------- Output section ---------- */
+
+.output-header {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.output-header h2 {
+    margin: 0;
+    font-family: var(--display-font);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+.output-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.copy-btn,
+.download-btn,
+.zip-btn {
+    padding: 10px 16px;
+}
+
+.copy-btn {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--line-strong);
+}
+
+.copy-btn:hover {
+    border-color: var(--ink);
+    background: var(--paper);
+}
+
+.download-btn {
+    background: var(--ink);
+    color: #fff;
+}
+
+.download-btn:hover {
+    background: #0d1a2e;
+}
+
+.zip-btn {
+    background: var(--accent);
+    color: #fff;
+}
+
+.zip-btn:hover {
+    background: #ea5a2c;
+}
+
+pre {
+    margin-top: 14px;
+    background: var(--console);
+    color: var(--console-text);
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--console-line);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    line-height: 1.6;
+    min-height: 280px;
+    font-family: var(--mono-font);
+    font-size: 13.5px;
+}
+
+#output {
+    position: relative;
+}
+
+/* faint console "ready" tick before the output, like a printout header */
+.output-header::before {
+    content: "";
+}
+
+@media (max-width: 700px) {
+    .page {
+        padding: 32px 14px;
+    }
+
+    .app-card {
+        padding: 30px 22px 32px;
+    }
+
+    .card-head {
+        flex-direction: column;
+    }
+
+    .stamp {
+        width: 100%;
+    }
+
+    .output-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .output-actions {
+        width: 100%;
+    }
+
+    .copy-btn,
+    .download-btn,
+    .zip-btn {
+        flex: 1;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+}
